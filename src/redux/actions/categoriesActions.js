@@ -7,9 +7,10 @@ export const setCategory = (id) => (dispatch, getState) => {
 
   if (id === "0") {
     endpoint = `/latest/${today}`;
-  }
-  if (id > 0 && id <= 6) {
+  } else if (id > 0 && id <= 6) {
     endpoint = `/news/category/${id}`;
+  } else {
+    endpoint = `/search/${id}`;
   }
 
   try {

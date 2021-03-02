@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { categories } from "../../utils/variables";
 import { setCategory } from "../../redux/actions/categoriesActions";
+import Search from "../search";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Navbar = () => {
           {category.name}
         </Link>
       ))}
+      <Search />
     </div>
   );
 };

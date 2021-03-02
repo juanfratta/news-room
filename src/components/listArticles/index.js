@@ -1,6 +1,7 @@
 import { fetchArticles } from "../../redux/actions/articlesActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import Card from "../card";
 
 const ListArticles = () => {
   const dispatch = useDispatch();
@@ -15,13 +16,10 @@ const ListArticles = () => {
     <div>
       {loading && <span>LOAD...</span>}
 
-      {articles && (
-        <div>
-          {articles.map((article) => (
-            <h3 key={article.news_id}>{article.title}</h3>
-          ))}
-        </div>
-      )}
+      {articles &&
+        articles.map((article) => (
+          <Card key={article.news_id} title={article.title} />
+        ))}
 
       {error && <div> ERROR...</div>}
     </div>
