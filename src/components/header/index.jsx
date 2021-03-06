@@ -1,9 +1,8 @@
 import { Navbar } from "..";
 
 const Header = () => (
-  <div>
-    <h1>Header</h1>
+  <header>
     <Navbar />
-  </div>
+  </header>
 );
 export default Header;
