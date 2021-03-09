@@ -12,7 +12,7 @@ const BurgerMenu = () => {
         <div></div>
         <div></div>
       </BurgerIcon>
-      <RightNav open={open} />
+      <RightNav open={open} setOpen={setOpen} />
     </>
   );
 };

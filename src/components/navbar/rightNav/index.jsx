@@ -7,8 +7,14 @@ import { setCategory } from "../../../redux/actions/categoriesActions";
 import { Ul } from "./styles";
 import { Search } from "../..";
 
-const RightNav = ({ open }) => {
+const RightNav = ({ open, setOpen }) => {
   const dispatch = useDispatch();
+
+  const handlerCategoryAndClose = (e) => {
+    dispatch(setCategory(e.target.id));
+    setOpen(!open);
+  };
+
   return (
     <>
       <Ul open={open}>
@@ -19,13 +25,13 @@ const RightNav = ({ open }) => {
               key={category.id}
               style={{ textDecoration: "none" }}
               id={category.id}
-              onClick={(e) => dispatch(setCategory(e.target.id))}
+              onClick={(e) => handlerCategoryAndClose(e)}
             >
               {category.name}
             </Link>
           </li>
         ))}
-        <Search />
+        <Search open={open} setOpen={setOpen} />
       </Ul>
     </>
   );

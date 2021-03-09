@@ -11,8 +11,12 @@ export const Nav = styled.nav`
   justify-content: space-between;
 
   .logo {
-    //padding: 15px 0;
     display: flex;
     align-items: center;
+
+    img {
+      width: 60px;
+      height: auto;
+    }
   }
 `;

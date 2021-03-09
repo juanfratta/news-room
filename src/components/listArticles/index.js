@@ -1,7 +1,10 @@
-import { fetchArticles } from "../../redux/actions/articlesActions";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import Card from "../card";
+import { useDispatch, useSelector } from "react-redux";
+import { Loading } from "..";
+
+import { fetchArticles } from "../../redux/actions/articlesActions";
+import CardArticle from "../cardArticle";
+import { ArticlesContainer, Message, MessageContainer } from "./styles";
 
 const ListArticles = () => {
   const dispatch = useDispatch();
@@ -13,16 +16,39 @@ const ListArticles = () => {
   }, [dispatch, endpoint]);
 
   return (
-    <div>
-      {loading && <span>LOAD...</span>}
+    <>
+      {loading && (
+        <MessageContainer>
+          <Loading />
+        </MessageContainer>
+      )}
 
-      {articles &&
-        articles.map((article) => (
-          <Card key={article.news_id} title={article.title} />
-        ))}
+      {articles.length > 0 && (
+        <ArticlesContainer>
+          {articles.map((article) => (
+            <CardArticle
+              key={article.news_id}
+              title={article.title}
+              image={article.img_url}
+              media={article.source_name}
+              url={article.url}
+            />
+          ))}{" "}
+        </ArticlesContainer>
+      )}
 
-      {error && <div> ERROR...</div>}
-    </div>
+      {!loading && !articles.length && (
+        <MessageContainer>
+          <Message>No hay artículos que coincidan con su búsqueda...</Message>
+        </MessageContainer>
+      )}
+
+      {error && (
+        <MessageContainer>
+          <Message>Error</Message>
+        </MessageContainer>
+      )}
+    </>
   );
 };
 
